@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Bienvenido {{ app.user.person.nombre}}! ✅</h1>
+    <br>
+    <ul class="Info">
+        <li><h2>Nombres y apellidos completos:</h2><h3>{{ app.user.person.nombre}} {{ app.user.person.apellido}}</h3></li>
+        <li><h2>Sexo:</h2><h3> {{ sexo}}</h3></li>
+        <li><h2>edad:</h2><h3> {{edad}}</h3></li>
+        <br>
+        
+        <li><h2>Correo electrónico:</h2><h3>{{ email }}</h3></li>
+        <li><h2>Rol:</h2><h3>{{ role }}</h3></li> 
+        
+
+    </ul>
+</div>
+{% endblock %}
