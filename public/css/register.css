@@ -1,5 +1,5 @@
-.login-container {
-    max-width: 400px;
+.register-container {
+    max-width: 500px;
     margin: 3rem auto;
     padding: 2rem;
     background-color: #f8f9fa;
@@ -9,7 +9,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-.login-container h1 {
+.register-container h1 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #343a40;
@@ -49,11 +49,15 @@
     background-color: #0056b3;
 }
 
-.alert {
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
+p {
+    text-align: center;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
 }

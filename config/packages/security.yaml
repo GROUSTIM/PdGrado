@@ -7,7 +7,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Usuario
                 property: email
     firewalls:
         dev:
@@ -16,7 +16,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\AppCustomAuthenticator
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                enable_csrf: true
+                default_target_path: app_home
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -32,7 +36,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/home, roles: ROLE_USER }
 
 when@test:

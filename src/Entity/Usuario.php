@@ -2,19 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\UsuarioRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
+#[ORM\Entity(repositoryClass: UsuarioRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -37,19 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Persona $person = null;
-
-    /**
-     * @var Collection<int, UserRoles>
-     */
-    #[ORM\OneToMany(targetEntity: UserRoles::class, mappedBy: 'Users')]
-    private Collection $Users;
-
-    public function __construct()
-    {
-        $this->Users = new ArrayCollection();
-    }
+    private ?Persona $persona = null;
 
     public function getId(): ?int
     {
@@ -80,6 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @see UserInterface
+     *
      * @return list<string>
      */
     public function getRoles(): array
@@ -125,44 +111,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getPerson(): ?Persona
+    public function getPersona(): ?persona
     {
-        return $this->person;
+        return $this->persona;
     }
 
-    public function setPerson(Persona $person): static
+    public function setPersona(?persona $persona): static
     {
-        $this->person = $person;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserRoles>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->Users;
-    }
-
-    public function addUser(UserRoles $user): static
-    {
-        if (!$this->Users->contains($user)) {
-            $this->Users->add($user);
-            $user->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(UserRoles $user): static
-    {
-        if ($this->Users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getUsers() === $this) {
-                $user->setUsers(null);
-            }
-        }
+        $this->persona = $persona;
 
         return $this;
     }

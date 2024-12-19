@@ -13,17 +13,20 @@ class Persona
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $nombre = null;
+    #[ORM\Column(length: 255)]
+    private ?string $nombres = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $apellido = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $sexo = null;
+    #[ORM\Column(length: 255)]
+    private ?string $apellidos = null;
 
     #[ORM\Column]
     private ?int $edad = null;
+
+    #[ORM\Column(length: 15)]
+    private ?string $genero = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $direccion = null;
 
     #[ORM\Column]
     private ?int $cedula = null;
@@ -33,38 +36,26 @@ class Persona
         return $this->id;
     }
 
-    public function getNombre(): ?string
+    public function getNombres(): ?string
     {
-        return $this->nombre;
+        return $this->nombres;
     }
 
-    public function setNombre(string $nombre): static
+    public function setNombres(string $nombres): static
     {
-        $this->nombre = $nombre;
+        $this->nombres = $nombres;
 
         return $this;
     }
 
-    public function getApellido(): ?string
+    public function getApellidos(): ?string
     {
-        return $this->apellido;
+        return $this->apellidos;
     }
 
-    public function setApellido(string $apellido): static
+    public function setApellidos(string $apellidos): static
     {
-        $this->apellido = $apellido;
-
-        return $this;
-    }
-
-    public function getSexo(): ?string
-    {
-        return $this->sexo;
-    }
-
-    public function setSexo(string $sexo): static
-    {
-        $this->sexo = $sexo;
+        $this->apellidos = $apellidos;
 
         return $this;
     }
@@ -77,6 +68,30 @@ class Persona
     public function setEdad(int $edad): static
     {
         $this->edad = $edad;
+
+        return $this;
+    }
+
+    public function getGenero(): ?string
+    {
+        return $this->genero;
+    }
+
+    public function setGenero(string $genero): static
+    {
+        $this->genero = $genero;
+
+        return $this;
+    }
+
+    public function getDireccion(): ?string
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion(string $direccion): static
+    {
+        $this->direccion = $direccion;
 
         return $this;
     }
